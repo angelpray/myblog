@@ -10,5 +10,8 @@ app.set('view engine', 'ejs');
 
 app.use('/', indexRoute);
 app.use('/users', userRoute);
-
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Server error');
+});
 app.listen(3000);
